@@ -26,7 +26,6 @@ const Tags = ({tags}) => tags.map((tag, index) => <span key={index} className="t
 
 export default function DescriptionCard({ item }) {
   const { title, description, tags } = item;
-  console.log(tags)
   return (
     <DescriptionCardStyled>
       <h1>{title}</h1>

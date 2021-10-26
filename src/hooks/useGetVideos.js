@@ -27,6 +27,7 @@ export default function useGetVideos(url) {
 
   return {
     videos,
+    setVideos,
     loading,
     error,
   };

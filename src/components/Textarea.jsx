@@ -13,19 +13,26 @@ const InputStyled = styled.div`
     border: none;
     background: rgba(0, 0, 0, 0.1);
     color: white;
-    border: 1.5px solid #98999e;
+    border: 1.5px solid #5e4c5a;
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
     font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+
 
     &::placeholder {
-      color: #98999e;
-      text-transform: capitalize;
+      color: #7f7f83;
+      font-family: 'Roboto', sans-serif;
+      text-transform: lowercase;
     }
 
     &:focus {
       outline: none;
       border: 1.75px solid #da47b9;
+    }
+
+    &:focus::placeholder { 
+      color: rgb(206, 208, 219, 0.3);
     }
   }
 `;

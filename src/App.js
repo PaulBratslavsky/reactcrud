@@ -67,7 +67,7 @@ const MainLayout = styled.div`
 `;
 
 function App() {
-  const { videos, loading, error } = useGetVideos(url);
+  const { videos, loading, error, setVideos } = useGetVideos(url);
   const [video, setVideo] = useState(null);
   const [show, setShow] = useState(false);
 
@@ -84,7 +84,7 @@ function App() {
   return (
     <MainLayout>
       <div className="video">
-        <VideoPlayer videoId={video} />
+        { videos.length > 0 && <VideoPlayer videoId={video} /> }
       </div>
       <div className="select">
         {videos.map((item) => (
@@ -98,10 +98,11 @@ function App() {
       </div>
       <div className="side">
           { selected && <DescriptionCard item={selected} /> }
-          { show ? <AddVideo setShow={setShow} /> : <ShowButtonStyled onClick={() => setShow(true)}><MdAddCircle /></ShowButtonStyled> }
+          { show ? <AddVideo setShow={setShow} setVideos={setVideos}/> : <ShowButtonStyled onClick={() => setShow(true)}><MdAddCircle /></ShowButtonStyled> }
       </div>
     </MainLayout>
   );
 }
 
 export default App;
+

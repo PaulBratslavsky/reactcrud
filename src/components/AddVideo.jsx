@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import { getVideoIdFromURL } from '../utils';
 import styled from 'styled-components';
 import { IoIosCloseCircle } from 'react-icons/io';
 import Textarea from './Textarea';
 import Button from './Button';
 import Input from './Input';
+
+const postUrl = 'http://localhost:3000/videos';
 
 const INITIAL_FORM_STATE = {
   title: '',
@@ -15,21 +18,27 @@ const INITIAL_FORM_STATE = {
 
 const FormStyled = styled.form`
   position: relative;
-  padding: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
   background: rgba(0, 0, 0, 0.7);
 
   svg {
     color: #fff;
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: -8px;
+    right: -8px;
     font-size: 1.2rem;
     cursor: pointer;
-  }
-`
-  
+    transition: all 0.3s ease-in-out;
 
-export default function AddVideo({ setShow }) {
+    &:hover {
+      color: rgba(235, 071, 195, 0.9);
+    }
+  }
+`;
+
+export default function AddVideo({ setShow, setVideos }) {
   const [formState, setFormState] = useState(INITIAL_FORM_STATE);
 
   function handleChange(e) {
@@ -40,19 +49,39 @@ export default function AddVideo({ setShow }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { title, description, url, tags } = formState;
-    console.log(title, description, url, tags);
-
-    const videoId = getVideoIdFromURL(url);
+    const videoID = getVideoIdFromURL(url);
 
     const dataToSubmit = {
+      id: uuid,
       title,
       description,
-      url,
-      tags: tags.split(','),
-      videoId,
-    }
+      videoUrl: url,
+      tags: tags.split(' '),
+      videoID,
+      liked: false,
+    };
 
-    console.log(dataToSubmit);
+    postData(postUrl, dataToSubmit);
+
+  }
+
+  async function postData(url, dataToSubmit) {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dataToSubmit),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      
+      console.log(data, 'data');
+      setVideos(prevState => [...prevState, dataToSubmit]);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -75,9 +104,10 @@ export default function AddVideo({ setShow }) {
       <Input
         type="text"
         name="url"
-        placeholder="YouTube"
+        placeholder="YouTube Url"
         value={formState.url}
         onChange={handleChange}
+        pattern="^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$"
         required
       />
       <Input
@@ -89,7 +119,7 @@ export default function AddVideo({ setShow }) {
         required
       />
       <Button type="submit">Add Video</Button>
-      <IoIosCloseCircle onClick={() => setShow(false)}/>
+      <IoIosCloseCircle onClick={() => setShow(false)} />
     </FormStyled>
   );
 }

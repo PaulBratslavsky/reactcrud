@@ -35,7 +35,7 @@ function VideoCard({ item, video, setVideo }) {
   return (
     <StyledVideoCard
       selected={item.videoID === video}
-      key={item.videoID}
+      key={item.id}
       onClick={() => setVideo(item.videoID)}
     >
       <h2>{item.title}</h2>

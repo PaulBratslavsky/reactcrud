@@ -2,47 +2,30 @@
   "videos": [
     {
       "title": "Night Drive # 7",
-      "description": "Awesome Phonk remix",
-      "videoID": "P9OYzyKqfPA",
-      "tags": ["trap", "phonk"],
-      "liked": false
-    },
-    {
-      "title": "Night Drive # 8",
-      "description": "Let's code some cool sh#t",
+      "description": "Cool chill music to listen to when coding",
+      "videoUrl": "https://www.youtube.com/watch?v=Yq-wStE_C3Y",
+      "tags": [
+        "phonk",
+        "chill",
+        "music"
+      ],
       "videoID": "Yq-wStE_C3Y",
-      "tags": ["trap", "phonk"],
-      "liked": false
+      "liked": false,
+      "id": 1
     },
     {
-      "title": "Night Drive # 6",
-      "description": "Really cool mix to code to",
-      "videoID": "K0vwi95TvGs",
-      "tags": ["trap", "phonk", "chill"],
-      "liked": true
+      "title": "Night Drice # 3",
+      "description": "When coding gets tough play this",
+      "videoUrl": "https://www.youtube.com/watch?v=ndizAUAR_Cs",
+      "tags": [
+        "phonk",
+        "chill",
+        "music"
+      ],
+      "videoID": "ndizAUAR_Cs",
+      "liked": false,
+      "id": 2
     }
   ],
-  "coding": [
-    {
-      "title": "Coding Motivation",
-      "description": "Here is some motivation for you.",
-      "videoID": "Js7hLYabSlk",
-      "tags": ["coding", "motivation"],
-      "liked": false
-    },
-    {
-      "title": "Learn to Code",
-      "description": "Best strategies for learning how to code.",
-      "videoID": "iZimyyJHqpc",
-      "tags": ["coding", "tips"],
-      "liked": false
-    },
-    {
-      "title": "Your Problem",
-      "description": "The biggest obstacle when learning to code.",
-      "videoID": "-S9f042IcLk",
-      "tags": ["coding", "tips", "learning"],
-      "liked": true
-    }
-  ]
+  "coding": []
 }
