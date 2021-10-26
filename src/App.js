@@ -73,9 +73,9 @@ function App() {
 
   useEffect(() => {
     if (videos.length > 0) {
-      setVideo(videos[0].videoID);
+      setVideo(video || videos[0].videoID);
     }
-  }, [setVideo, videos]);
+  }, [setVideo, videos, video]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -84,7 +84,7 @@ function App() {
   return (
     <MainLayout>
       <div className="video">
-        { videos.length > 0 && <VideoPlayer videoId={video} /> }
+        { video && <VideoPlayer videoId={video} /> }
       </div>
       <div className="select">
         {videos.map((item) => (

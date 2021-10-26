@@ -62,7 +62,6 @@ export default function AddVideo({ setShow, setVideos }) {
     };
 
     postData(postUrl, dataToSubmit);
-
   }
 
   async function postData(url, dataToSubmit) {
@@ -77,8 +76,9 @@ export default function AddVideo({ setShow, setVideos }) {
 
       const data = await response.json();
       
-      console.log(data, 'data');
-      setVideos(prevState => [...prevState, dataToSubmit]);
+      setVideos((prevState) => [...prevState, data]);
+      setFormState(INITIAL_FORM_STATE);
+      setShow(false);
     } catch (error) {
       console.error(error);
     }
