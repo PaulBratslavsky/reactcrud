@@ -21,5 +21,28 @@
       "tags": ["trap", "phonk", "chill"],
       "liked": true
     }
+  ],
+  "coding": [
+    {
+      "title": "Coding Motivation",
+      "description": "Here is some motivation for you.",
+      "videoID": "Js7hLYabSlk",
+      "tags": ["coding", "motivation"],
+      "liked": false
+    },
+    {
+      "title": "Learn to Code",
+      "description": "Best strategies for learning how to code.",
+      "videoID": "iZimyyJHqpc",
+      "tags": ["coding", "tips"],
+      "liked": false
+    },
+    {
+      "title": "Your Problem",
+      "description": "The biggest obstacle when learning to code.",
+      "videoID": "-S9f042IcLk",
+      "tags": ["coding", "tips", "learning"],
+      "liked": true
+    }
   ]
 }

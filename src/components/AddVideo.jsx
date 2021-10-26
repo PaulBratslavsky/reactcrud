@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import { getVideoIdFromURL } from '../utils';
+import styled from 'styled-components';
+import { IoIosCloseCircle } from 'react-icons/io';
+import Textarea from './Textarea';
+import Button from './Button';
+import Input from './Input';
 
 const INITIAL_FORM_STATE = {
   title: '',
@@ -8,7 +13,23 @@ const INITIAL_FORM_STATE = {
   tags: '',
 };
 
-export default function AddVideo() {
+const FormStyled = styled.form`
+  position: relative;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+
+  svg {
+    color: #fff;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+`
+  
+
+export default function AddVideo({ setShow }) {
   const [formState, setFormState] = useState(INITIAL_FORM_STATE);
 
   function handleChange(e) {
@@ -35,8 +56,8 @@ export default function AddVideo() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <FormStyled onSubmit={handleSubmit}>
+      <Input
         type="text"
         name="title"
         placeholder="Title"
@@ -44,14 +65,14 @@ export default function AddVideo() {
         onChange={handleChange}
         required
       />
-      <textarea
+      <Textarea
         name="description"
         placeholder="Description"
         value={formState.description}
         onChange={handleChange}
         required
       />
-      <input
+      <Input
         type="text"
         name="url"
         placeholder="YouTube"
@@ -59,7 +80,7 @@ export default function AddVideo() {
         onChange={handleChange}
         required
       />
-      <input
+      <Input
         type="text"
         name="tags"
         placeholder="Tags"
@@ -67,7 +88,8 @@ export default function AddVideo() {
         onChange={handleChange}
         required
       />
-      <button type="submit">Add Video</button>
-    </form>
+      <Button type="submit">Add Video</Button>
+      <IoIosCloseCircle onClick={() => setShow(false)}/>
+    </FormStyled>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useGetVideos from './hooks/useGetVideos';
+import { MdAddCircle } from 'react-icons/md';
 
 import VideoPlayer from './components/VideoPlayer';
 import VideoCard from './components/VideoCard';
@@ -10,6 +11,24 @@ import { selectedVideo } from './utils';
 import AddVideo from './components/AddVideo';
 
 const url = 'http://localhost:3000/videos';
+// const url = 'http://localhost:3000/coding';
+
+const ShowButtonStyled = styled.div`
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+    color: rgba(235, 071, 195, 0.9);
+  }
+  }
+`
 
 const MainLayout = styled.div`
   display: grid;
@@ -26,12 +45,6 @@ const MainLayout = styled.div`
 
   .video {
     grid-area: 1 / 1 / 2 / 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 0;
   }
 
   .select {
@@ -47,20 +60,22 @@ const MainLayout = styled.div`
     background-color: rgba(235, 071, 195, 0.1);
     backdrop-filter: blur(5px);
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 
 function App() {
   const { videos, loading, error } = useGetVideos(url);
   const [video, setVideo] = useState(null);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (videos.length > 0) {
       setVideo(videos[0].videoID);
     }
   }, [setVideo, videos]);
-
- 
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -83,7 +98,7 @@ function App() {
       </div>
       <div className="side">
           { selected && <DescriptionCard item={selected} /> }
-          {/* <AddVideo /> */}
+          { show ? <AddVideo setShow={setShow} /> : <ShowButtonStyled onClick={() => setShow(true)}><MdAddCircle /></ShowButtonStyled> }
       </div>
     </MainLayout>
   );
