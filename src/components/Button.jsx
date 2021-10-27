@@ -19,6 +19,6 @@ const ButtonStyled = styled.button`
 
 `
 
-export default function Button() {
-  return <ButtonStyled>Submit</ButtonStyled>
+export default function Button({text = "Submit"}) {
+  return <ButtonStyled>{text}</ButtonStyled>
 }

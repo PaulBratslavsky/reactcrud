@@ -25,10 +25,10 @@ const ShowButtonStyled = styled.div`
     transition: all 0.3s ease-in-out;
 
     &:hover {
-    color: rgba(235, 071, 195, 0.9);
+      color: rgba(235, 071, 195, 0.9);
+    }
   }
-  }
-`
+`;
 
 const MainLayout = styled.div`
   display: grid;
@@ -68,6 +68,8 @@ const MainLayout = styled.div`
 
 function App() {
   const { videos, loading, error, setVideos } = useGetVideos(url);
+  const [isEditing, setIsEditing] = useState(false);
+
   const [video, setVideo] = useState(null);
   const [show, setShow] = useState(false);
 
@@ -77,15 +79,20 @@ function App() {
     }
   }, [setVideo, videos, video]);
 
+  function handleEditing(id) {
+    const itemToEdit = videos.find((item) => item.id === id);
+    setVideo(itemToEdit.videoID, 'HUH');
+    setIsEditing(itemToEdit);
+    setShow(true);
+  }
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
 
   const selected = selectedVideo(videos, video);
   return (
     <MainLayout>
-      <div className="video">
-        { video && <VideoPlayer videoId={video} /> }
-      </div>
+      <div className="video">{video && <VideoPlayer videoId={video} />}</div>
       <div className="select">
         {videos.map((item) => (
           <VideoCard
@@ -97,12 +104,31 @@ function App() {
         ))}
       </div>
       <div className="side">
-          { selected && <DescriptionCard item={selected} /> }
-          { show ? <AddVideo setShow={setShow} setVideos={setVideos}/> : <ShowButtonStyled onClick={() => setShow(true)}><MdAddCircle /></ShowButtonStyled> }
+        {selected && (
+          <DescriptionCard
+            item={selected}
+            videos={videos}
+            setVideos={setVideos}
+            setVideo={setVideo}
+            handleEditing={handleEditing}
+          />
+        )}
+        {show ? (
+          <AddVideo
+            setShow={setShow}
+            setVideos={setVideos}
+            isEditing={isEditing}
+            handleEditing={handleEditing}
+            setIsEditing={setIsEditing}
+          />
+        ) : (
+          <ShowButtonStyled onClick={() => setShow(true)}>
+            <MdAddCircle />
+          </ShowButtonStyled>
+        )}
       </div>
     </MainLayout>
   );
 }
 
 export default App;
-

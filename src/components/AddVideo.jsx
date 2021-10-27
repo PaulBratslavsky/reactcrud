@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { getVideoIdFromURL } from '../utils';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ const postUrl = 'http://localhost:3000/videos';
 const INITIAL_FORM_STATE = {
   title: '',
   description: '',
-  url: '',
+  videoUrl: '',
   tags: '',
 };
 
@@ -38,24 +38,34 @@ const FormStyled = styled.form`
   }
 `;
 
-export default function AddVideo({ setShow, setVideos }) {
+export default function AddVideo({ setShow, setVideos, isEditing, setIsEditing,  }) {
   const [formState, setFormState] = useState(INITIAL_FORM_STATE);
+
+  useEffect(() => { 
+    setFormState(isEditing);
+  }, [isEditing]);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
   }
 
+  function handleClose() {
+    setShow(false);
+    setFormState(INITIAL_FORM_STATE);
+    setIsEditing(false);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    const { title, description, url, tags } = formState;
-    const videoID = getVideoIdFromURL(url);
+    const { title, description, videoUrl, tags } = formState;
+    const videoID = getVideoIdFromURL(videoUrl);
 
     const dataToSubmit = {
       id: uuid,
       title,
       description,
-      videoUrl: url,
+      videoUrl: videoUrl,
       tags: tags.split(' '),
       videoID,
       liked: false,
@@ -103,9 +113,9 @@ export default function AddVideo({ setShow, setVideos }) {
       />
       <Input
         type="text"
-        name="url"
+        name="videoUrl"
         placeholder="YouTube Url"
-        value={formState.url}
+        value={formState.videoUrl}
         onChange={handleChange}
         pattern="^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$"
         required
@@ -118,8 +128,8 @@ export default function AddVideo({ setShow, setVideos }) {
         onChange={handleChange}
         required
       />
-      <Button type="submit">Add Video</Button>
-      <IoIosCloseCircle onClick={() => setShow(false)} />
+      <Button type="submit" text={isEditing ? "Edit Video" : "Add Video"} />
+      <IoIosCloseCircle onClick={handleClose} />
     </FormStyled>
   );
 }
