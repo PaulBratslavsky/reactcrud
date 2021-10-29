@@ -5,11 +5,7 @@
       "title": "Night Drive # 3",
       "description": "When coding gets tough play this.  This is one of my favorite songs.",
       "videoUrl": "https://www.youtube.com/watch?v=ndizAUAR_Cs",
-      "tags": [
-        "phonk",
-        "chill",
-        "music"
-      ],
+      "tags": "phonk chill music what",
       "videoID": "ndizAUAR_Cs",
       "liked": false
     },
@@ -17,11 +13,7 @@
       "title": "Night Drive # 6",
       "description": "Another cool mix to chill to",
       "videoUrl": "https://www.youtube.com/watch?v=K0vwi95TvGs",
-      "tags": [
-        "phonk",
-        "trap",
-        "music"
-      ],
+      "tags": "phonk chill music",
       "videoID": "K0vwi95TvGs",
       "liked": false,
       "id": 3
@@ -31,12 +23,7 @@
       "title": "Night Drive # 8",
       "description": "This mix is sick.",
       "videoUrl": "https://www.youtube.com/watch?v=P9OYzyKqfPA",
-      "tags": [
-        "phonk",
-        "trap",
-        "music",
-        "awesome"
-      ],
+      "tags": "phonk chill music",
       "videoID": "P9OYzyKqfPA",
       "liked": false
     },
@@ -44,11 +31,7 @@
       "title": "Night Drive # 9",
       "description": "Let's do this. Good music for coding.",
       "videoUrl": "https://www.youtube.com/watch?v=ZjSe25Kw_aM",
-      "tags": [
-        "phonk",
-        "music",
-        "trap"
-      ],
+      "tags": "phonk chill music",
       "videoID": "ZjSe25Kw_aM",
       "liked": false,
       "id": 5
@@ -58,10 +41,7 @@
       "title": "Skeler",
       "description": "Another nice mix",
       "videoUrl": "https://www.youtube.com/watch?v=J0y6wM0aAgE",
-      "tags": [
-        "skeler",
-        "music"
-      ],
+      "tags": "phonk chill music",
       "videoID": "J0y6wM0aAgE",
       "liked": false
     },
@@ -69,11 +49,7 @@
       "title": "Panamera",
       "description": "Real cool chill remix of Russian song.",
       "videoUrl": "https://www.youtube.com/watch?v=Shbxk1Qrpmc&list=PL1GxSbElJMqaOVJb68aVs8xM63QL8prgq&index=127",
-      "tags": [
-        "chill",
-        "russian",
-        "music"
-      ],
+      "tags": "phonk chill music",
       "videoID": "Shbxk1Qrpmc",
       "liked": false,
       "id": 7
@@ -82,12 +58,7 @@
       "title": "How To Phonk",
       "description": "FL Studio tutorial",
       "videoUrl": "https://www.youtube.com/watch?v=WcVey84JsZA",
-      "tags": [
-        "phonk",
-        "music",
-        "howto",
-        "flstudio"
-      ],
+      "tags": "phonk chill music",
       "videoID": "WcVey84JsZA",
       "liked": false,
       "id": 8
@@ -96,11 +67,7 @@
       "title": "Night Drive # 7",
       "description": "Cool mix to work to",
       "videoUrl": "https://www.youtube.com/watch?v=Yq-wStE_C3Y",
-      "tags": [
-        "phonk",
-        "trap",
-        "music"
-      ],
+      "tags": "phonk chill music",
       "videoID": "Yq-wStE_C3Y",
       "liked": false,
       "id": 9
@@ -110,11 +77,7 @@
       "title": "Eldjey",
       "description": "This was a cool music video.",
       "videoUrl": "https://www.youtube.com/watch?v=x0abafHIMdQ&list=PL1GxSbElJMqaOVJb68aVs8xM63QL8prgq&index=20",
-      "tags": [
-        "russian",
-        "rap",
-        "music"
-      ],
+      "tags": "phonk chill music",
       "videoID": "x0abafHIMdQ",
       "liked": false
     },
@@ -122,11 +85,7 @@
       "title": "Eldjey 2",
       "description": "A cool song that he practically copied from another artist but this version is better.",
       "videoUrl": "https://www.youtube.com/watch?v=ZNmX9NK1UVs&list=PL1GxSbElJMqaOVJb68aVs8xM63QL8prgq&index=19",
-      "tags": [
-        "russian",
-        "music",
-        "eldjey"
-      ],
+      "tags": "phonk chill music",
       "videoID": "ZNmX9NK1UVs",
       "liked": false,
       "id": 11

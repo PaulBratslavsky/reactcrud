@@ -52,7 +52,7 @@ export default function AddVideo({
   useEffect(() => {
     console.log(isEditing, "DATA TO EDOT");
     if (isEditing) {
-      setFormState({ ...isEditing, tags: isEditing.tags.join(" ") });
+      setFormState({ ...isEditing, tags: isEditing.tags});
     }
 
     return () => {
@@ -83,7 +83,7 @@ export default function AddVideo({
         title,
         description,
         videoUrl,
-        tags: tags.split(" "),
+        tags,
         videoID,
         liked: false,
       };
@@ -99,7 +99,7 @@ export default function AddVideo({
         title,
         description,
         videoUrl: videoUrl,
-        tags: tags.split(" "),
+        tags,
         videoID,
         liked: false,
       };

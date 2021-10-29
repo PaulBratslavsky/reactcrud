@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { deleteData } from '../api';
+import React from "react";
+import styled from "styled-components";
+import { deleteData } from "../api";
 
-import { MdDeleteForever, MdEdit } from 'react-icons/md';
+import { MdDeleteForever, MdEdit } from "react-icons/md";
 
 const DescriptionCardStyled = styled.div`
   padding: 2rem;
@@ -44,17 +44,22 @@ const DescriptionCardStyled = styled.div`
 `;
 
 const Tags = ({ tags }) =>
-  tags.map((tag, index) => (
+  tags.split(" ").map((tag, index) => (
     <span key={index} className="tags">
       {tag}
     </span>
   ));
 
-export default function DescriptionCard({ item, videos, setVideos, setVideo, handleEditing}) {
-
+export default function DescriptionCard({
+  item,
+  videos,
+  setVideos,
+  setVideo,
+  handleEditing,
+}) {
   async function handleDelete() {
     try {
-      const url = `http://localhost:3000/videos/${item.id}`
+      const url = `http://localhost:3000/videos/${item.id}`;
       const data = await deleteData(url);
       console.log(data);
       const newVideos = videos.filter((video) => video.id !== item.id);
