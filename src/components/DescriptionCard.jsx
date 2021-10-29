@@ -78,7 +78,7 @@ export default function DescriptionCard({
       <p>{description}</p>
       <Tags tags={tags} />
       <div>
-        <MdDeleteForever onClick={handleDelete} />
+        <MdDeleteForever onClick={(handleDelete)} />
         <MdEdit onClick={() => handleEditing(id)} />
       </div>
     </DescriptionCardStyled>

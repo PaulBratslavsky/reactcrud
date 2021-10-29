@@ -10,7 +10,8 @@ import DescriptionCard from './components/DescriptionCard';
 import { selectedVideo } from './utils';
 import AddVideo from './components/AddVideo';
 
-const url = 'http://localhost:3000/videos';
+const url = 'http://localhost:1337/videos';
+// const url = 'http://localhost:3000/videos';
 // const url = 'http://localhost:3000/coding';
 
 const ShowButtonStyled = styled.div`
@@ -79,12 +80,12 @@ function App() {
     }
   }, [setVideo, videos, video]);
 
-  function handleEditing(id) {
-    const itemToEdit = videos.find((item) => item.id === id);
-    setVideo(itemToEdit.videoID, 'HUH');
-    setIsEditing(itemToEdit);
-    setShow(true);
-  }
+  // function handleEditing(id) {
+  //   const itemToEdit = videos.find((item) => item.id === id);
+  //   setVideo(itemToEdit.videoID, 'HUH');
+  //   setIsEditing(itemToEdit);
+  //   setShow(true);
+  // }
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -113,7 +114,7 @@ function App() {
             videos={videos}
             setVideos={setVideos}
             setVideo={setVideo}
-            handleEditing={handleEditing}
+            handleEditing={() => {}}
           />
         )}
         {show ? (
@@ -121,13 +122,13 @@ function App() {
             setShow={setShow}
             setVideos={setVideos}
             isEditing={isEditing}
-            handleEditing={handleEditing}
+            handleEditing={() => {}}
             setIsEditing={setIsEditing}
             videos={videos}
             setVideo={setVideo}
           />
         ) : (
-          <ShowButtonStyled onClick={() => setShow(true)}>
+          <ShowButtonStyled onClick={() => {}}>
             <MdAddCircle />
           </ShowButtonStyled>
         )}
