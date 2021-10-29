@@ -130,17 +130,6 @@
       "videoID": "ZNmX9NK1UVs",
       "liked": false,
       "id": 11
-    },
-    {
-      "id": 12,
-      "title": "Cool Game",
-      "description": "Never got a chance to play.",
-      "videoUrl": "https://www.youtube.com/watch?v=4jZ343sNMwc",
-      "tags": [
-        "mafia"
-      ],
-      "videoID": "4jZ343sNMwc",
-      "liked": false
     }
   ],
   "coding": []
