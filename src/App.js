@@ -74,7 +74,7 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (videos.length > 0) {
+    if (videos.length > 0 && !video) {
       setVideo(video || videos[0].videoID);
     }
   }, [setVideo, videos, video]);
@@ -88,8 +88,11 @@ function App() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
+  if (!videos.length) return <div><h1 style={{color: 'white'}}>No videos found</h1></div>;
 
   const selected = selectedVideo(videos, video);
+
+
   return (
     <MainLayout>
       <div className="video">{video && <VideoPlayer videoId={video} />}</div>
@@ -120,6 +123,8 @@ function App() {
             isEditing={isEditing}
             handleEditing={handleEditing}
             setIsEditing={setIsEditing}
+            videos={videos}
+            setVideo={setVideo}
           />
         ) : (
           <ShowButtonStyled onClick={() => setShow(true)}>

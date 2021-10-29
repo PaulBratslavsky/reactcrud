@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { getData } from '../api';
 
 export default function useGetVideos(url) {
   const [videos, setVideos] = useState([]);
@@ -8,17 +9,13 @@ export default function useGetVideos(url) {
   const getVideos =  useCallback(async () => { 
     try {
       setLoading(true);
-      const response = await fetch(url);
-      const data = await response.json();
+      const data = await getData(url);
       setVideos(data);
       setLoading(false);
     } catch (error) {
       setError(error);
       setLoading(false);
     }
-    const response = await fetch(url);
-    const data = await response.json();
-    setVideos(data);
   }, [url]);
 
   useEffect(() => {

@@ -1,19 +1,20 @@
-import { useEffect, useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import { getVideoIdFromURL } from '../utils';
-import styled from 'styled-components';
-import { IoIosCloseCircle } from 'react-icons/io';
-import Textarea from './Textarea';
-import Button from './Button';
-import Input from './Input';
+import { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
+import { getVideoIdFromURL } from "../utils";
+import styled from "styled-components";
+import { IoIosCloseCircle } from "react-icons/io";
+import Textarea from "./Textarea";
+import Button from "./Button";
+import Input from "./Input";
+import { postData, putData } from "../api";
 
-const postUrl = 'http://localhost:3000/videos';
+const postUrl = "http://localhost:3000/videos";
 
 const INITIAL_FORM_STATE = {
-  title: '',
-  description: '',
-  videoUrl: '',
-  tags: '',
+  title: "",
+  description: "",
+  videoUrl: "",
+  tags: "",
 };
 
 const FormStyled = styled.form`
@@ -38,11 +39,25 @@ const FormStyled = styled.form`
   }
 `;
 
-export default function AddVideo({ setShow, setVideos, isEditing, setIsEditing,  }) {
+export default function AddVideo({
+  setShow,
+  setVideos,
+  isEditing,
+  setIsEditing,
+  videos,
+  setVideo,
+}) {
   const [formState, setFormState] = useState(INITIAL_FORM_STATE);
 
-  useEffect(() => { 
-    setFormState(isEditing);
+  useEffect(() => {
+    console.log(isEditing, "DATA TO EDOT");
+    if (isEditing) {
+      setFormState({ ...isEditing, tags: isEditing.tags.join(" ") });
+    }
+
+    return () => {
+      setFormState(INITIAL_FORM_STATE);
+    };
   }, [isEditing]);
 
   function handleChange(e) {
@@ -59,33 +74,63 @@ export default function AddVideo({ setShow, setVideos, isEditing, setIsEditing, 
   function handleSubmit(e) {
     e.preventDefault();
     const { title, description, videoUrl, tags } = formState;
-    const videoID = getVideoIdFromURL(videoUrl);
+    console.log(videoUrl, "url");
+    if (isEditing) {
+      const videoID = getVideoIdFromURL(videoUrl);
 
-    const dataToSubmit = {
-      id: uuid,
-      title,
-      description,
-      videoUrl: videoUrl,
-      tags: tags.split(' '),
-      videoID,
-      liked: false,
-    };
+      const dataToSubmit = {
+        id: isEditing.id,
+        title,
+        description,
+        videoUrl,
+        tags: tags.split(" "),
+        videoID,
+        liked: false,
+      };
 
-    postData(postUrl, dataToSubmit);
+      console.log(dataToSubmit, "DATA TO SUBMIT");
+
+      updateVideo(postUrl, isEditing.id, dataToSubmit);
+    } else {
+      const videoID = getVideoIdFromURL(videoUrl);
+
+      const dataToSubmit = {
+        id: uuid,
+        title,
+        description,
+        videoUrl: videoUrl,
+        tags: tags.split(" "),
+        videoID,
+        liked: false,
+      };
+
+      console.log(dataToSubmit);
+
+      addVideo(postUrl, dataToSubmit);
+    }
   }
 
-  async function postData(url, dataToSubmit) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(dataToSubmit),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  async function updateVideo(baseUrl, id, dataToSubmit) {
+    const url = `${baseUrl}/${id}`;
+    const data = await putData(url, dataToSubmit);
+    console.log(data);
 
-      const data = await response.json();
-      
+    const filteredVideos = videos.map((video) => {
+      if (video.id === id) {
+        return dataToSubmit;
+      }
+      return video;
+    });
+
+    setVideos([...filteredVideos]);
+    setVideo(dataToSubmit.videoID);
+    setShow(false);
+    setIsEditing(false);
+  }
+
+  async function addVideo(url, dataToSubmit) {
+    try {
+      const data = await postData(url, dataToSubmit);
       setVideos((prevState) => [...prevState, data]);
       setFormState(INITIAL_FORM_STATE);
       setShow(false);
