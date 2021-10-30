@@ -8,7 +8,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { postData, putData } from "../api";
 
-const postUrl = "http://localhost:3000/videos";
+const postUrl = "http://localhost:1337/videos";
 
 const INITIAL_FORM_STATE = {
   title: "",
@@ -52,7 +52,7 @@ export default function AddVideo({
   useEffect(() => {
     console.log(isEditing, "DATA TO EDOT");
     if (isEditing) {
-      setFormState({ ...isEditing, tags: isEditing.tags});
+      setFormState({ ...isEditing, tags: isEditing.tags });
     }
 
     return () => {
@@ -95,13 +95,11 @@ export default function AddVideo({
       const videoID = getVideoIdFromURL(videoUrl);
 
       const dataToSubmit = {
-        id: uuid,
         title,
         description,
         videoUrl: videoUrl,
         tags,
         videoID,
-        liked: false,
       };
 
       console.log(dataToSubmit);

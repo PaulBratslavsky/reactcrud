@@ -59,7 +59,7 @@ export default function DescriptionCard({
 }) {
   async function handleDelete() {
     try {
-      const url = `http://localhost:3000/videos/${item.id}`;
+      const url = `http://localhost:1337/videos/${item.id}`;
       const data = await deleteData(url);
       console.log(data);
       const newVideos = videos.filter((video) => video.id !== item.id);

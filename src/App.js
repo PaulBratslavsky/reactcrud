@@ -80,12 +80,12 @@ function App() {
     }
   }, [setVideo, videos, video]);
 
-  // function handleEditing(id) {
-  //   const itemToEdit = videos.find((item) => item.id === id);
-  //   setVideo(itemToEdit.videoID, 'HUH');
-  //   setIsEditing(itemToEdit);
-  //   setShow(true);
-  // }
+  function handleEditing(id) {
+    const itemToEdit = videos.find((item) => item.id === id);
+    setVideo(itemToEdit.videoID, 'HUH');
+    setIsEditing(itemToEdit);
+    setShow(true);
+  }
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
@@ -128,7 +128,7 @@ function App() {
             setVideo={setVideo}
           />
         ) : (
-          <ShowButtonStyled onClick={() => {}}>
+          <ShowButtonStyled onClick={() => setShow(true)}>
             <MdAddCircle />
           </ShowButtonStyled>
         )}
