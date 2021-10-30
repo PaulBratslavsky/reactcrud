@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import useGetVideos from './hooks/useGetVideos';
-import { MdAddCircle } from 'react-icons/md';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import useGetVideos from "./hooks/useGetVideos";
+import { MdAddCircle } from "react-icons/md";
 
-import VideoPlayer from './components/VideoPlayer';
-import VideoCard from './components/VideoCard';
-import DescriptionCard from './components/DescriptionCard';
+import VideoPlayer from "./components/VideoPlayer";
+import VideoCard from "./components/VideoCard";
+import DescriptionCard from "./components/DescriptionCard";
 
-import { selectedVideo } from './utils';
-import AddVideo from './components/AddVideo';
+import { selectedVideo } from "./utils";
+import AddVideo from "./components/AddVideo";
 
-const url = 'http://localhost:1337/videos';
-// const url = 'http://localhost:3000/videos';
-// const url = 'http://localhost:3000/coding';
+const url = "https://communityoneapi.herokuapp.com/videos";
 
 const ShowButtonStyled = styled.div`
   height: 250px;
@@ -82,17 +80,21 @@ function App() {
 
   function handleEditing(id) {
     const itemToEdit = videos.find((item) => item.id === id);
-    setVideo(itemToEdit.videoID, 'HUH');
+    setVideo(itemToEdit.videoID, "HUH");
     setIsEditing(itemToEdit);
     setShow(true);
   }
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
-  if (!videos.length) return <div><h1 style={{color: 'white'}}>No videos found</h1></div>;
+  if (!videos.length)
+    return (
+      <div>
+        <h1 style={{ color: "white" }}>No videos found</h1>
+      </div>
+    );
 
   const selected = selectedVideo(videos, video);
-
 
   return (
     <MainLayout>
@@ -114,7 +116,7 @@ function App() {
             videos={videos}
             setVideos={setVideos}
             setVideo={setVideo}
-            handleEditing={() => {}}
+            handleEditing={handleEditing}
           />
         )}
         {show ? (
@@ -122,7 +124,7 @@ function App() {
             setShow={setShow}
             setVideos={setVideos}
             isEditing={isEditing}
-            handleEditing={() => {}}
+            handleEditing={handleEditing}
             setIsEditing={setIsEditing}
             videos={videos}
             setVideo={setVideo}

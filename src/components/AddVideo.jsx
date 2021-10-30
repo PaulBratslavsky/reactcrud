@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
 import { getVideoIdFromURL } from "../utils";
 import styled from "styled-components";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -8,7 +7,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { postData, putData } from "../api";
 
-const postUrl = "http://localhost:1337/videos";
+const postUrl = "https://communityoneapi.herokuapp.com/videos/";
 
 const INITIAL_FORM_STATE = {
   title: "",
