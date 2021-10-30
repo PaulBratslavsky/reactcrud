@@ -7,7 +7,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { postData, putData } from "../api";
 
-const postUrl = "https://communityoneapi.herokuapp.com/videos/";
+const postUrl = "https://communityoneapi.herokuapp.com/videos";
 
 const INITIAL_FORM_STATE = {
   title: "",
